@@ -206,44 +206,7 @@ CMD=<span class="pl-s"><span class="pl-pds">"</span>torchrun --nnodes=<span clas
 
 <span class="pl-c1">echo</span> <span class="pl-smi">${CMD}</span>
 <span class="pl-smi">$CMD</span></pre><div class="zeroclipboard-container">
-    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="cd training
-export PYTHONPATH=/**your-base-path**/webcpm
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-GPUS_PER_NODE=$(echo $CUDA_VISIBLE_DEVICES | tr ',' '\n' | wc -l | xargs)
-echo &quot;Number of visible devices: $GPUS_PER_NODE, should be the same as visible devices&quot;
-
-set -ex
-
-MASTER_ADDR=localhost
-MASTER_PORT=3239
-NNODES=1
-NODE_RANK=0
-
-OPTS=&quot;&quot;
-OPTS+=&quot; --model-config config/cpm-bee-10b.json&quot;
-OPTS+=&quot; --dataset ../data/dataset_interactive/train_data&quot;
-OPTS+=&quot; --dataseteval ../data/dataset_interactive/dev_data&quot;
-OPTS+=&quot; --epoch 5&quot;
-OPTS+=&quot; --batch-size 8&quot;
-OPTS+=&quot; --train-iters 100&quot;
-OPTS+=&quot; --save-name webcpm_finetuned&quot;
-OPTS+=&quot; --max-length 2560&quot;
-OPTS+=&quot; --save ../models/&quot;
-OPTS+=&quot; --lr 0.0001&quot;
-OPTS+=&quot; --inspect-iters 100&quot;
-OPTS+=&quot; --warmup-iters 1&quot;
-OPTS+=&quot; --save-epochs 1&quot;
-OPTS+=&quot; --lr-decay-style noam&quot;
-OPTS+=&quot; --weight-decay 0.01&quot;
-OPTS+=&quot; --clip-grad 1.0&quot;
-OPTS+=&quot; --loss-scale 32768&quot;
-OPTS+=&quot; --start-step 0&quot;
-OPTS+=&quot; --load ../models/cpm_10b_webcpm_exp.pt&quot;
-
-CMD=&quot;torchrun --nnodes=${NNODES} --nproc_per_node=${GPUS_PER_NODE} --rdzv_id=1 --rdzv_backend=c10d --rdzv_endpoint=${MASTER_ADDR}:${MASTER_PORT} finetune_cpm_bee.py ${OPTS}&quot;
-
-echo ${CMD}
-$CMD" tabindex="0" role="button">
+    
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
     <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
 </svg>
